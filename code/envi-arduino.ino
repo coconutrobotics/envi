@@ -1,3 +1,4 @@
+   
 //Include Libraries
 
 //Library for temperature and humidity sensor
@@ -86,6 +87,7 @@ void setup() {
   Serial.println(" ");
   //Set the time of the begining of the program
   prevTime = millis();
+  float t = dht.readTemperature();   
 }
 
 //Loop runs every time
@@ -119,9 +121,9 @@ void loop() {
     Serial.print("Command:");         
     Serial.println(command);
     //Envi wakes up and moves around for a few seconds
-    rotate();
-    delay(1300);
-    Stop();
+   // rotate();
+   // delay(1300);
+   // Stop();
     //Actions for get temperature command
     if (command == "temp") {
       Serial.print("Temperature:");
@@ -175,105 +177,82 @@ void loop() {
     }
     if (command == "L") {
       left();
-      delay(1000);
+      delay(800);
       Stop();
     }
     if (command == "R") {
       right();
-      delay(1000);
+      delay(800);
       Stop();
     }
     if (command == "RT") {
       rotate();
-      delay(1000);
+      delay(1400);
       Stop();
     }
+  
   }
   //delay(100);
 } 
 
 void forward()
 {
-  motorFL.setSpeed(100); 
+  motorFL.setSpeed(255); 
   motorFL.run(FORWARD); 
-  motorFR.setSpeed(100); 
+  motorFR.setSpeed(255); 
   motorFR.run(FORWARD); 
-  motorBL.setSpeed(100);
+  motorBL.setSpeed(255);
   motorBL.run(FORWARD); 
-  motorBR.setSpeed(100);
+  motorBR.setSpeed(255);
   motorBR.run(FORWARD); 
 }
  
 void back()
 {
-  motorFL.setSpeed(100); 
+  motorFL.setSpeed(255); 
   motorFL.run(BACKWARD); 
-  motorFR.setSpeed(100); 
+  motorFR.setSpeed(255); 
   motorFR.run(BACKWARD); 
-  motorBL.setSpeed(100); 
+  motorBL.setSpeed(255); 
   motorBL.run(BACKWARD); 
-  motorBR.setSpeed(100); 
+  motorBR.setSpeed(255); 
   motorBR.run(BACKWARD); 
 }
  
 void left()
 {
-  motorFL.setSpeed(200); 
-  motorFL.run(FORWARD); 
-  //motorFR.setSpeed(100); 
-  //motorFR.run(BACKWARD); 
-  //motorBL.setSpeed(100);
-  //motorBL.run(BACKWARD);  
-  motorBR.setSpeed(200); 
+  motorFL.setSpeed(180); 
+  motorFL.run(BACKWARD); 
+  motorFR.setSpeed(255); 
+  motorFR.run(FORWARD); 
+  motorBL.setSpeed(180);
+  motorBL.run(BACKWARD);  
+  motorBR.setSpeed(255); 
   motorBR.run(FORWARD); 
 }
  
 void right()
 {
-  motorFL.setSpeed(200); 
+  motorFL.setSpeed(255); 
   motorFL.run(FORWARD); 
-  motorFR.setSpeed(200); 
-  motorFR.run(FORWARD); 
-  motorBL.setSpeed(200); 
-  motorBL.run(BACKWARD); 
-  motorBR.setSpeed(200); 
+  motorFR.setSpeed(180); 
+  motorFR.run(BACKWARD); 
+  motorBL.setSpeed(255);
+  motorBL.run(FORWARD);  
+  motorBR.setSpeed(180); 
   motorBR.run(BACKWARD); 
 } 
 
-void forward_leftturn()
-{
-  motorFL.setSpeed(0); 
-  motorFL.run(RELEASE); 
-  motorFR.setSpeed(80); 
-  motorFR.run(FORWARD); 
-  motorBL.setSpeed(80); 
-  motorBL.run(FORWARD); 
-  motorBR.setSpeed(0); 
-  motorBR.run(RELEASE); 
-}
-
-void forward_rightturn()
-{
-  motorFL.setSpeed(80); 
-  motorFL.run(FORWARD); 
-  motorFR.setSpeed(0); 
-  motorFR.run(RELEASE); 
-  motorBL.setSpeed(0); 
-  motorBL.run(RELEASE); 
-  motorBR.setSpeed(80); 
-  motorBR.run(BACKWARD); 
-}
-
 void rotate()
 {
-  motorFL.setSpeed(130); 
+  motorFL.setSpeed(255); 
   motorFL.run(FORWARD); 
-  motorFR.setSpeed(130); 
+  motorFR.setSpeed(255); 
   motorFR.run(BACKWARD); 
-  motorBL.setSpeed(130); 
-  motorBL.run(FORWARD); 
-  motorBR.setSpeed(130); 
-  motorBR.run(BACKWARD); 
+  motorBL.setSpeed(255); 
+  motorBL.run(BACKWARD); 
+  motorBR.setSpeed(255); 
+  motorBR.run(FORWARD); 
 }
 
 
@@ -288,3 +267,4 @@ void Stop()
   motorBR.setSpeed(0); 
   motorBR.run(RELEASE); 
 }
+
